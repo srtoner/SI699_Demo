@@ -1,3 +1,6 @@
+##
+pip install gensim==3.8.3
+
 # Unsupervised-Aspect-Category-Detection
 This repository contains the code for the paper "An Unsupervised Approach for Aspect Category Detection Using Soft Cosine Similarity Measure".
 
