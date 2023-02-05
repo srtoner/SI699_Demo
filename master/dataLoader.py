@@ -1,4 +1,4 @@
-from PreProcessing import PreProcessing
+from master.PreProcessing import PreProcessing
 import numpy as np
 import xml.etree.ElementTree as ET
 from nltk.stem.wordnet import WordNetLemmatizer

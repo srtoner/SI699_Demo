@@ -1,5 +1,5 @@
 from gensim import models
-from dataLoader import LoadDataset
+from master.dataLoader import LoadDataset
 import random
 import numpy as np
 from collections import defaultdict
@@ -11,11 +11,13 @@ from copy import deepcopy
 def sigmoid(x, derivative=False):
     return x * (1-x) if derivative else 1 / (1+np.exp(-x))
 
-
+path = 'master/yelp-weak-supervision/yelp_restaurant_review.txt'
 
 class Unsupervised:
     def __init__(self):
-        self.w2v_model = models.KeyedVectors.load_word2vec_format('word-embedding/yelp_W2V_300_orig.bin', binary=True)
+
+
+        self.w2v_model = models.KeyedVectors.load_word2vec_format('master/word-embedding/yelp_W2V_300_orig.bin', binary=True)
         self.category_label_num = {
             'service': 0,
             'food': 1,
@@ -45,7 +47,7 @@ class Unsupervised:
         ]
         self.dataset = LoadDataset()
         self.yelp_sentences = []
-        self.getYelpSentences()
+        self.getYelpSentences(path)
         self.test_sentences = []
         self.test_sentences_with_label = []
         for item in self.dataset.test_data:
@@ -55,11 +57,11 @@ class Unsupervised:
         self.dictionary = corpora.Dictionary(self.test_sentences)
         self.corpus = [self.dictionary.doc2bow(document) for document in self.test_sentences]
         self.similarity_matrix = self.w2v_model.similarity_matrix(self.dictionary)
-        # np.save("similarity_matrix", self.similarity_matrix)
-        # self.similarity_matrix = np.load("similarity_matrix.npy").item()
+        np.save("similarity_matrix", self.similarity_matrix)
+        self.similarity_matrix = np.load("similarity_matrix.npy",allow_pickle=True).item()
 
-    def getYelpSentences(self):
-        f = open('yelp-weak-supervision/yelp_restaurant_review.txt', 'r')
+    def getYelpSentences(self, path):
+        f = open(path, 'r')
         raw_yelp = f.read().split('\n')
         yelp_sentences = [raw_yelp[i].split(' ') for i in range(len(raw_yelp))]
         random_samples = random.sample(yelp_sentences, 10000)
