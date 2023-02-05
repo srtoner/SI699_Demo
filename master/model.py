@@ -14,38 +14,73 @@ def sigmoid(x, derivative=False):
 path = 'master/yelp-weak-supervision/yelp_restaurant_review.txt'
 
 class Unsupervised:
-    def __init__(self):
+    def __init__(self, amzn = False):
 
 
         self.w2v_model = models.KeyedVectors.load_word2vec_format('master/word-embedding/yelp_W2V_300_orig.bin', binary=True)
-        self.category_label_num = {
-            'service': 0,
-            'food': 1,
-            'price': 2,
-            'ambience': 3,
-            'anecdotes/miscellaneous': 4
-        }
-        self.category_num_label = {
-            0: 'service',
-            1: 'food',
-            2: 'price',
-            3: 'ambience',
-            4: 'anecdotes/miscellaneous'
-        }
-        self.category_seed_words = {
-            'service': {'service', 'staff', 'friendly', 'attentive', 'manager'},
-            'food': {'food', 'delicious', 'menu', 'fresh', 'tasty'},
-            'price': {'price', 'cheap', 'expensive', 'money', 'affordable'},
-            'ambience': {'ambience', 'atmosphere', 'decor', 'romantic', 'loud'}
-        }
-        self.categories = [
-            'service',
-            'food',
-            'price',
-            'ambience',
-            'anecdotes/miscellaneous'
-        ]
-        self.dataset = LoadDataset()
+
+        if not amzn:
+
+
+            self.category_label_num = {
+                'service': 0,
+                'food': 1,
+                'price': 2,
+                'ambience': 3,
+                'anecdotes/miscellaneous': 4
+            }
+            self.category_num_label = {
+                0: 'service',
+                1: 'food',
+                2: 'price',
+                3: 'ambience',
+                4: 'anecdotes/miscellaneous'
+            }
+            self.category_seed_words = {
+                'service': {'service', 'staff', 'friendly', 'attentive', 'manager'},
+                'food': {'food', 'delicious', 'menu', 'fresh', 'tasty'},
+                'price': {'price', 'cheap', 'expensive', 'money', 'affordable'},
+                'ambience': {'ambience', 'atmosphere', 'decor', 'romantic', 'loud'}
+            }
+            self.categories = [
+                'service',
+                'food',
+                'price',
+                'ambience',
+                'anecdotes/miscellaneous'
+            ]
+        
+        else:
+
+            self.category_label_num = {
+                'media': 0,
+                'toys': 1,
+                'tools': 2,
+                'clothing': 3,
+                'other': 4
+            }
+            self.category_num_label = {
+                0 : 'media',
+                1 :'toys',
+                2 :'tools',
+                3 :'clothing',
+                4 : 'other'
+            }
+            self.category_seed_words = {
+                'media': {'book', 'music', 'movie', 'tune', 'entertainment'},
+                'toys': {'model', 'child', 'cool', 'play', 'fun'},
+                'tools': {'reliable', 'useful', 'work', 'broke', 'help'},
+                'clothing': {'fit', 'size', 'color', 'material', 'look'}
+            }
+            self.categories = [
+                'media',
+                'toys',
+                'tools',
+                'clothing',
+                'other'
+            ]
+
+        self.dataset = LoadDataset(amzn=amzn)
         self.yelp_sentences = []
         self.getYelpSentences(path)
         self.test_sentences = []

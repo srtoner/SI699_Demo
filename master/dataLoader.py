@@ -2,6 +2,7 @@ from master.PreProcessing import PreProcessing
 import numpy as np
 import xml.etree.ElementTree as ET
 from nltk.stem.wordnet import WordNetLemmatizer
+import pandas as pd
 
 
 def point_wise_add(x, y):
@@ -29,7 +30,7 @@ def scaler_vector_mult(s, v):
 
 
 class LoadDataset():
-    def __init__(self, redundant=False):
+    def __init__(self, redundant=False, amzn = False):
         self.category_label_num = {
             'service': 0,
             'food': 1,
@@ -39,7 +40,10 @@ class LoadDataset():
         }
         self.percentage = 1.0
         self.redundant = redundant
-        self.extract_data('dataset/ABSA14_Restaurants_Train.xml',
+        if amzn:
+            self.extract_data(None, None, True)
+        else:
+            self.extract_data('dataset/ABSA14_Restaurants_Train.xml',
                                      'dataset/Restaurants_Test_Data_phaseB.xml',)
 
     def __len__(self):
@@ -81,20 +85,24 @@ class LoadDataset():
                 result.append(0)
         return result
 
-    def extract_data(self, train_file, test_file):
-        tree = ET.parse(train_file)
-        root = tree.getroot()
-        train_sentences = root.findall('sentence')
-        tree = ET.parse(test_file)
-        root = tree.getroot()
-        test_sentences = root.findall('sentence')
+    def extract_data(self, train_file, test_file, amzn = False):
+        if amzn:
+            train_sentences = pd.read_csv('amazon_review_polarity_csv/train.csv', names = ['label', 'sentence'])['sentence']
+            test_sentences = pd.read_csv('amazon_review_polarity_csv/test.csv', names = ['label', 'sentence'])['sentence']
+        else:
+            tree = ET.parse(train_file)
+            root = tree.getroot()
+            train_sentences = root.findall('sentence')
+            tree = ET.parse(test_file)
+            root = tree.getroot()
+            test_sentences = root.findall('sentence')
         self.train_sentence_with_all_labels = {}
         self.train_labels = {}
         self.test_labels = {}
-        self.processed_train_sentences = self.process_data(train_sentences)
-        self.processed_test_sentences = self.process_data(test_sentences)
-        self.original_train_sentences = self.getOriginalsentences(train_sentences)
-        self.original_test_sentences = self.getOriginalTestsentences(test_sentences)
+        self.processed_train_sentences = self.process_data(train_sentences, amzn=amzn)
+        self.processed_test_sentences = self.process_data(test_sentences, amzn=amzn)
+        self.original_train_sentences = self.getOriginalsentences(train_sentences, amzn=amzn)
+        self.original_test_sentences = self.getOriginalTestsentences(test_sentences, amzn=amzn)
         self.train_data, self.categories = self.get_inputs(self.processed_train_sentences,
                                                            train_sentences,
                                                            is_train=True)
@@ -104,30 +112,41 @@ class LoadDataset():
         print(self.categories)
         print(len(self.train_data))
 
-    def getOriginalsentences(self, unprocessed_data):
+    def getOriginalsentences(self, unprocessed_data, amzn = False):
         unprocessed_sentences = []
         for sentence in unprocessed_data:
-            text = sentence[0].text
+            if not amzn:
+                text = sentence[0].text
+            else:
+                text = sentence
+                
             if '$' in text:
                 text = text.replace('$', ' price ')
             text = text.lower()
             unprocessed_sentences.append(text)
         return unprocessed_sentences
 
-    def getOriginalTestsentences(self, unprocessed_data):
+    def getOriginalTestsentences(self, unprocessed_data, amzn = False):
         unprocessed_sentences = []
         for sentence in unprocessed_data:
-            text = sentence[0].text
+            if not amzn:
+                text = sentence[0].text
+            else:
+                text = sentence
+            
             if '$' in text:
                 text = text.replace('$', ' price ')
             text = text.lower()
             unprocessed_sentences.append(text)
         return unprocessed_sentences
 
-    def process_data(self, unprocessed_data):
+    def process_data(self, unprocessed_data, amzn = False):
         unprocessed_sentences = []
         for sentence in unprocessed_data:
-            text = sentence[0].text
+            if not amzn:
+                text = sentence[0].text
+            else:
+                text = sentence
             if '$' in text:
                 text = text.replace('$', ' price ')
             text = text.lower()
