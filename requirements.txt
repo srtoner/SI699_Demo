@@ -1,0 +1,8 @@
+numpy
+pandas
+matplotlib
+scikit-learn
+tqdm
+plotly
+nltk
+gensim==3.8.3
