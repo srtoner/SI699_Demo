@@ -14,12 +14,12 @@ def sigmoid(x, derivative=False):
 path = 'master/yelp-weak-supervision/yelp_restaurant_review.txt'
 
 class Unsupervised:
-    def __init__(self, amzn = False):
+    def __init__(self, laptop = False):
 
 
         self.w2v_model = models.KeyedVectors.load_word2vec_format('master/word-embedding/yelp_W2V_300_orig.bin', binary=True)
 
-        if not amzn:
+        if not laptop:
 
 
             self.category_label_num = {
@@ -52,35 +52,43 @@ class Unsupervised:
         
         else:
 
-            self.category_label_num = {
-                'media': 0,
-                'toys': 1,
-                'tools': 2,
-                'clothing': 3,
-                'other': 4
-            }
-            self.category_num_label = {
-                0 : 'media',
-                1 :'toys',
-                2 :'tools',
-                3 :'clothing',
-                4 : 'other'
-            }
+          
+
+            self.category_label_num = {'LAPTOP': 0,
+                                         'SUPPORT': 1,
+                                          'SOFTWARE' : 2,
+                                           'CPU' : 3,
+                                            'OS' : 4,
+                                         'DISPLAY' : 5,
+                                         'anecdotes/miscellaneous' : 6}
+
+            self.category_num_label = {0 :'LAPTOP',
+                                       1 : 'SUPPORT',
+                                       2 : 'SOFTWARE',
+                                       3 : 'CPU',
+                                       4 : 'OS',
+                                       5 : 'DISPLAY',
+                                       6 : 'anecdotes/miscellaneous'}
+           
+           
             self.category_seed_words = {
-                'media': {'book', 'music', 'movie', 'tune', 'entertainment'},
-                'toys': {'model', 'child', 'cool', 'play', 'fun'},
-                'tools': {'reliable', 'useful', 'work', 'broke', 'help'},
-                'clothing': {'fit', 'size', 'color', 'material', 'look'}
+                'LAPTOP': {'battery', 'price', 'run', 'perform', 'keyboard'},
+                'SUPPORT': {'call', 'help', 'fix', 'solve', 'support'},
+                'CPU': {'fast', 'power', 'process', 'compute', 'intel'},
+                'OS': {'system', 'operate', 'windows', 'mac', 'linux'},
+                'DISPLAY' : {'screen', 'graphics', 'resolution', 'pixel', 'lag'}
             }
             self.categories = [
-                'media',
-                'toys',
-                'tools',
-                'clothing',
-                'other'
+                'LAPTOP',
+                'SUPPORT',
+                'SOFTWARE',
+                'CPU',
+                'OS',
+                'DISPLAY',
+                'anecdotes/miscellaneous'
             ]
 
-        self.dataset = LoadDataset(amzn=amzn)
+        self.dataset = LoadDataset(laptop=laptop)
         self.yelp_sentences = []
         self.getYelpSentences(path)
         self.test_sentences = []

@@ -6,18 +6,18 @@ import pickle
 
 
 def main():
-    amzn = True
+    laptops = False
     num_clusters = 12
     alpha = 0.7
-    unsupervised = Unsupervised(amzn=amzn)
+    unsupervised = Unsupervised(laptops)
     cluster_indexes, centroids = unsupervised.k_means_clustering_yelp(num_clusters)
     clustScores = unsupervised.classify_clusters(cluster_indexes, centroids)
     result = unsupervised.classify_test_sentences(alpha, clustScores, centroids)
 
     # Save Models for future use
 
-    if amzn:
-        pickle.dump(unsupervised, open("trained_amzn_model.pkl", 'wb'))
+    if laptops:
+        pickle.dump(unsupervised, open("trained_laptop_model.pkl", 'wb'))
     else:
         pickle.dump(unsupervised, open("trained_model.pkl", 'wb'))
 
