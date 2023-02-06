@@ -51,40 +51,30 @@ class Unsupervised:
             ]
         
         else:
+            self.category_label_num = {'Performance': 0,
+                                         'Quality': 1,
+                                          'Price' : 2,
+                                           'Support' : 3,
+                                         'anecdotes/miscellaneous' : 4}
 
-          
-
-            self.category_label_num = {'LAPTOP': 0,
-                                         'SUPPORT': 1,
-                                          'SOFTWARE' : 2,
-                                           'CPU' : 3,
-                                            'OS' : 4,
-                                         'DISPLAY' : 5,
-                                         'anecdotes/miscellaneous' : 6}
-
-            self.category_num_label = {0 :'LAPTOP',
-                                       1 : 'SUPPORT',
-                                       2 : 'SOFTWARE',
-                                       3 : 'CPU',
-                                       4 : 'OS',
-                                       5 : 'DISPLAY',
-                                       6 : 'anecdotes/miscellaneous'}
+            self.category_num_label = {0 :'Performance',
+                                       1 : 'Quality',
+                                       2 : 'Price',
+                                       3 : 'Support',
+                                       4 : 'anecdotes/miscellaneous'}
            
            
             self.category_seed_words = {
-                'LAPTOP': {'battery', 'price', 'run', 'perform', 'keyboard'},
-                'SUPPORT': {'call', 'help', 'fix', 'solve', 'support'},
-                'CPU': {'fast', 'power', 'process', 'compute', 'intel'},
-                'OS': {'system', 'operate', 'windows', 'mac', 'linux'},
-                'DISPLAY' : {'screen', 'graphics', 'resolution', 'pixel', 'lag'}
+                'Performance': {'battery', 'easy', 'fast', 'life', 'power'},
+                'Quality': {'screen', 'quality', 'features', 'keyboard', 'mouse'},
+                'Price': {'price', 'worth', 'money', 'cost', 'spent'},
+                'Support': {'warranty', 'send', 'problem', 'customer', 'support'},
             }
             self.categories = [
-                'LAPTOP',
-                'SUPPORT',
-                'SOFTWARE',
-                'CPU',
-                'OS',
-                'DISPLAY',
+                'Performance',
+                'Quality',
+                'Price',
+                'Support',
                 'anecdotes/miscellaneous'
             ]
 
