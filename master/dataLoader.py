@@ -3,6 +3,7 @@ import numpy as np
 import xml.etree.ElementTree as ET
 from nltk.stem.wordnet import WordNetLemmatizer
 import pandas as pd
+import json
 
 
 def point_wise_add(x, y):
@@ -31,13 +32,20 @@ def scaler_vector_mult(s, v):
 
 class LoadDataset():
     def __init__(self, redundant=False, laptop = False):
-        self.category_label_num = {
-            'service': 0,
-            'food': 1,
-            'price': 2,
-            'ambience': 3,
-            'anecdotes/miscellaneous': 4
-        }
+        if laptop:
+            self.category_label_num = {'Performance': 0,
+                                         'Quality': 1,
+                                          'Price' : 2,
+                                           'Support' : 3,
+                                         'anecdotes/miscellaneous' : 4}
+        else:
+            self.category_label_num = {
+                'service': 0,
+                'food': 1,
+                'price': 2,
+                'ambience': 3,
+                'anecdotes/miscellaneous': 4
+            }
         self.percentage = 1.0
         self.redundant = redundant
         if laptop:
@@ -104,11 +112,20 @@ class LoadDataset():
         self.processed_test_sentences = self.process_data(test_sentences, amzn=amzn)
         self.original_train_sentences = self.getOriginalsentences(train_sentences, amzn=amzn)
         self.original_test_sentences = self.getOriginalTestsentences(test_sentences, amzn=amzn)
-        self.train_data, self.categories = self.get_inputs(self.processed_train_sentences,
-                                                           train_sentences,
-                                                           is_train=True)
-        self.test_data = self.get_inputs(self.processed_test_sentences,
-                                         test_sentences)
+
+        if amzn:
+            self.train_data, self.categories = self.get_inputs_laptop(self.processed_train_sentences,
+                                                            train_sentences,
+                                                            is_train=True)
+            self.test_data = self.get_inputs_laptop(self.processed_test_sentences,
+                                            test_sentences)
+
+        else:    
+            self.train_data, self.categories = self.get_inputs(self.processed_train_sentences,
+                                                            train_sentences,
+                                                            is_train=True)
+            self.test_data = self.get_inputs(self.processed_test_sentences,
+                                            test_sentences)
         self.number_of_categories = len(self.categories)
         print(self.categories)
         print(len(self.train_data))
@@ -170,7 +187,7 @@ class LoadDataset():
             # sentence = [lmtz.lemmatize(word) for word in sentence]
             sentence_categories = []
             if len(unprocessed_data[i]) > 1 and len(unprocessed_data[i][1]) > 0:
-                if unprocessed_data[i][1].tag == 'aspectCategories':
+                if unprocessed_data[i][1].tag == 'aspectCategories' or unprocessed_data[i][1].tag == 'Opinions':
                     aspect_cats = unprocessed_data[i][1]
                 else:
                     aspect_cats = unprocessed_data[i][2]
@@ -247,6 +264,8 @@ class LoadDataset():
             return processed_data
 
     def get_inputs_laptop(self, processed_sentences, unprocessed_data, is_train=False):
+        with open('laptop_map.json', 'r') as f:
+            cat_map = json.load(f)
         processed_data = []
         categories = []
         lmtz = WordNetLemmatizer()
@@ -262,7 +281,7 @@ class LoadDataset():
             # sentence = [lmtz.lemmatize(word) for word in sentence]
             sentence_categories = []
             if len(unprocessed_data[i]) > 1 and len(unprocessed_data[i][1]) > 0:
-                if unprocessed_data[i][1].tag == 'aspectCategories':
+                if unprocessed_data[i][1].tag == 'Opinions':
                     aspect_cats = unprocessed_data[i][1]
                 else:
                     aspect_cats = unprocessed_data[i][2]
@@ -270,27 +289,27 @@ class LoadDataset():
                     labels = 5 * [0]
                     for opinions in aspect_cats:
                         dict = opinions.attrib
-                        if dict['category'] in sentence_categories:
+                        if cat_map[dict['category']] in sentence_categories:
                             continue
-                        labels[self.category_label_num[str(dict['category'])]] = 1
-                        sentence_categories.append(dict['category'])
-                        if dict['category'] not in categories:
-                            categories.append(dict['category'])
+                        labels[self.category_label_num[str(cat_map[dict['category']])]] = 1
+                        sentence_categories.append(cat_map[dict['category']])
+                        if cat_map[dict['category']] not in categories:
+                            categories.append(cat_map[dict['category']])
                     processed_data.append([sentence, labels])
                     self.train_sentence_with_all_labels[' '.join(sentence)] = labels
                     self.train_labels[i] = sentence_categories
                 else:
                     test_sentence_categories = []
                     # sentence_categories = []
-                    if unprocessed_data[i][1].tag == 'aspectCategories':
+                    if unprocessed_data[i][1].tag == 'Opinions':
                         aspect_cats = unprocessed_data[i][1]
                     else:
                         aspect_cats = unprocessed_data[i][2]
                     for opinions in aspect_cats:
                         dict = opinions.attrib
-                        if self.category_label_num[dict['category']] not in test_sentence_categories:
-                            test_sentence_categories.append(self.category_label_num[dict['category']])
-                            sentence_categories.append(dict['category'])
+                        if self.category_label_num.get(cat_map.get(dict['category'])) not in test_sentence_categories:
+                            test_sentence_categories.append(self.category_label_num.get(cat_map.get(dict['category'])))
+                            sentence_categories.append(cat_map.get(dict['category']))
                     processed_data.append([sentence, test_sentence_categories])
                     self.test_labels[i] = sentence_categories
                     if 0 in test_sentence_categories:
@@ -305,11 +324,11 @@ class LoadDataset():
                         length_5 += 1
             else:
                 if is_train:
-                    processed_data.append([sentence, 'NULL'])
+                    processed_data.append([sentence, [0,0,0,0,1]])
                     self.train_sentence_with_all_labels[' '.join(sentence)] = 5 * [0]
                     self.train_sentence_with_all_labels[' '.join(sentence)][-1] = 1
                 else:
-                    processed_data.append([sentence, [self.category_label_num['NULL']]])
+                    processed_data.append([sentence, [self.category_label_num['anecdotes/miscellaneous']]])
         if is_train:
             num_of_inst_for_each_label = len(self.category_label_num.keys()) * [0]
             for instance in processed_data:
@@ -337,8 +356,3 @@ class LoadDataset():
             return processed_data, categories
         else:
             return processed_data
-
-
-# if __name__ == '__main__':
-#     dataset = dataset = SimpleDataset('../../datas/ABSA14_Restaurants_Train.xml',
-#                                       '../../datas/Restaurants_Test_Data_phaseB.xml', 0.1, redundant=True)

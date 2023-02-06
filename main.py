@@ -6,7 +6,7 @@ import pickle
 
 
 def main():
-    laptops = False
+    laptops = True
     num_clusters = 12
     alpha = 0.7
     unsupervised = Unsupervised(laptops)
@@ -22,7 +22,6 @@ def main():
         pickle.dump(unsupervised, open("trained_model.pkl", 'wb'))
 
     # Get the originals
-
     print('F1-measure : ' + str(result[0]))
     print('Precision : ' + str(result[1]))
     print('Recall : ' + str(result[2]))

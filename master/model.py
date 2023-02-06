@@ -20,8 +20,6 @@ class Unsupervised:
         self.w2v_model = models.KeyedVectors.load_word2vec_format('master/word-embedding/yelp_W2V_300_orig.bin', binary=True)
 
         if not laptop:
-
-
             self.category_label_num = {
                 'service': 0,
                 'food': 1,

@@ -14,15 +14,8 @@ def display_pca_scatterplot_3D(model, user_input=None, words=None, label=None, c
         else:
             words = [ word for word in model.vocab ]
     
-    # word_vectors = np.array([model[w] for w in words])
-    # word_vectors = np.array(user_input)
     
     three_dim = PCA(random_state=0).fit_transform(user_input)[:,:3]
-    # For 2D, change the three_dim variable into something like two_dim like the following:
-    # two_dim = PCA(random_state=0).fit_transform(word_vectors)[:,:2]
-
-    data = []
-    count = 0
 
     df = pd.DataFrame(three_dim)
     df['Label'] = color_map
@@ -34,17 +27,28 @@ def display_pca_scatterplot_3D(model, user_input=None, words=None, label=None, c
 
 if __name__ == "__main__":
     
-    with open('trained_model.pkl', 'rb') as f:
+    laptop = True
+
+    with open('trained_laptop_model.pkl', 'rb') as f:
         model = pickle.load(f)
+
+    laptop_cat_labels = {0 :'Performance',
+                         1 : 'Quality',
+                         2 : 'Price',
+                         3 : 'Support',
+                         4 : 'anecdotes/miscellaneous'}
 
     test_sentences = model.test_sentences_with_label
     categories = model.categories
     seed_words = model.category_seed_words
     seed_sentences = []
     sentences = [ts[0] for ts in test_sentences]
-    data_labels = [ts[1][0] for ts in test_sentences]
-    embeddings = []
+    if laptop:
+        data_labels = [laptop_cat_labels.get(ts[1][0]) for ts in test_sentences]
+    else:
+        data_labels = [ts[1][0] for ts in test_sentences]
 
+    embeddings = []
     cat_labels = []
 
     for idx, cat in enumerate(categories):
@@ -53,7 +57,7 @@ if __name__ == "__main__":
         seed = seed_words[cat]
         embeddings.append(model.sentence_embedd_average(seed))
         seed_sentences.append(' '.join(seed))
-        cat_labels.append(idx)
+        cat_labels.append(cat)
 
     for sent in sentences:
         embeddings.append(model.sentence_embedd_average(sent))
