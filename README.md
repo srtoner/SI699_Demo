@@ -56,9 +56,13 @@ This should open a window that looks something like this:
  (Option B): On a Windows machine:
 
 Use Windows key + R to get the "Run" window.
+
 ![windows](README%20File/windows.png)
+
 Type in "wt" and click "OK", which should open a terminal:
+
 ![windows-1](README%20File/windows-1.png)
+
 (if "wt" doesn't work, try "cmd")
 
 ##### 2.2  Verify conda is working (and optionally update it)
