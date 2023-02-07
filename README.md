@@ -48,7 +48,7 @@ If you already have Anaconda installed, you can skip this step, otherwise, you c
 #### 2. Creating a new python environment for this course
 ##### 2.1 Open the shell:
 (Option A) On a Mac, search for the Terminal app:
-![Terminal app](README File/Terminal.png)
+![Terminal app](https://github.com/srtoner/SI699_Demo/blob/542c21be23252a84990915e45821f7daba2b14b7/README%20File/Terminal.png))
 This should open a window that looks something like this:
 ![Terminal-1 app](README File/Terminal-1.png)
 
