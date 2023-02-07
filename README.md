@@ -48,17 +48,17 @@ If you already have Anaconda installed, you can skip this step, otherwise, you c
 #### 2. Creating a new python environment for this course
 ##### 2.1 Open the shell:
 (Option A) On a Mac, search for the Terminal app:
-![Terminal app](https://github.com/srtoner/SI699_Demo/blob/542c21be23252a84990915e45821f7daba2b14b7/README%20File/Terminal.png))
+![Terminal app](README%20File/Terminal.png)
 This should open a window that looks something like this:
-![Terminal-1 app](README File/Terminal-1.png)
+![Terminal-1 app](README%20File/Terminal-1.png)
 
 
  (Option B): On a Windows machine:
 
 Use Windows key + R to get the "Run" window.
-![windows](README File/windows.png)
+![windows](README%20File/windows.png)
 Type in "wt" and click "OK", which should open a terminal:
-![windows-1](README File/windows-1.png)
+![windows-1](README%20File/windows-1.png)
 (if "wt" doesn't work, try "cmd")
 
 ##### 2.2  Verify conda is working (and optionally update it)
@@ -188,7 +188,7 @@ After run main.py, you can use **`plotly`** to plot 3D scatter plot.
 
 
 ## Result
-![Result](README File/result.gif)
+![Result](README%20File/result.gif)
 
 ## Cite
 ```
