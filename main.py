@@ -1,10 +1,6 @@
 from master.model import Unsupervised
 import pickle
 
-
-
-
-
 def main():
     laptops = True
     num_clusters = 12
