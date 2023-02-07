@@ -5,6 +5,8 @@ import pandas as pd
 # import Preprocessing
 from collections import Counter, defaultdict
 
+import os
+
 
 def to_df(word_counts):
     wordcount_df = pd.DataFrame.from_dict(word_counts, orient = 'index').reset_index(
@@ -29,10 +31,12 @@ def consolidate_dict2(corpus):
 
 if __name__ == "__main__":
 
-
+    # Replace with Absolute Path?
     train_path = 'dataset/ABSA-15_Laptops_Train_Data.xml'
     node = 'Review/sentences/sentence'
     opinion_node = 'Review/sentences/sentence/Opinions/Opinion'
+
+    
     tree = ET.parse(train_path)
     root = tree.getroot()
     train_sentences = root.findall(node)
