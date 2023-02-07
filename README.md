@@ -8,7 +8,7 @@ Demo for SI699
 - [Data](##Data)
     - [Dataset](##Dataset)
 - [Dependencies](##Dependencies)
--  [Setup](##Setup:Install packages)
+-  [Setup](##Setup:)
 - [File introduction](##File introduction)
 - [Result](##Result)
 
@@ -40,7 +40,8 @@ You can find the dataset in the semeval 2014 website [here](http://alt.qcri.org/
 * nltk
 
 
-## Setup: Install packages
+## Setup: 
+### Install packages
 ```sh
 pip install -r requirements.txt
 ```
