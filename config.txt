@@ -1,0 +1,13 @@
+{
+    "laptop" : {
+        "train" : "dataset/ABSA-15_Laptops_Train_Data.xml", 
+        "test" : "dataset/ABSA15_Laptops_Test.xml"
+    },
+
+    "yelp" :  {
+        "train" : "dataset/ABSA14_Restaurants_Train.xml",
+        "test" : "dataset/Restaurants_Test_Data_phaseB.xml" 
+    },
+    "yelp_text" : "master/yelp-weak-supervision/yelp_restaurant_review.txt",
+    "model_path": "master/word-embedding/yelp_W2V_300_orig.bin"
+}

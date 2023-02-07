@@ -14,7 +14,7 @@ def sigmoid(x, derivative=False):
 path = 'master/yelp-weak-supervision/yelp_restaurant_review.txt'
 
 class Unsupervised:
-    def __init__(self, laptop = False):
+    def __init__(self, paths, laptop = False):
 
         self.w2v_model = models.KeyedVectors.load_word2vec_format('master/word-embedding/yelp_W2V_300_orig.bin', binary=True)
 
@@ -74,7 +74,8 @@ class Unsupervised:
                 'anecdotes/miscellaneous'
             ]
 
-        self.dataset = LoadDataset(laptop=laptop)
+        path = paths['reviews']   
+        self.dataset = LoadDataset(paths, laptop=laptop)
         self.yelp_sentences = []
         self.getYelpSentences(path)
         self.test_sentences = []

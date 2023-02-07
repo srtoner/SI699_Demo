@@ -31,7 +31,7 @@ def scaler_vector_mult(s, v):
 
 
 class LoadDataset():
-    def __init__(self, redundant=False, laptop = False):
+    def __init__(self, paths, redundant=False, laptop = False):
         if laptop:
             self.category_label_num = {'Performance': 0,
                                          'Quality': 1,
@@ -49,10 +49,9 @@ class LoadDataset():
         self.percentage = 1.0
         self.redundant = redundant
         if laptop:
-            self.extract_data('dataset/ABSA-15_Laptops_Train_Data.xml', 'dataset/ABSA15_Laptops_Test.xml', True)
+            self.extract_data(paths['train'], paths['test'], True)
         else:
-            self.extract_data('dataset/ABSA14_Restaurants_Train.xml',
-                                     'dataset/Restaurants_Test_Data_phaseB.xml',)
+            self.extract_data(paths['train'], paths['test'])
 
     def __len__(self):
         return len(self.train_data)

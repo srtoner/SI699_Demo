@@ -1,11 +1,28 @@
 from master.model import Unsupervised
 import pickle
+import json
 
 def main():
-    laptops = True
+    with open('config.txt', 'r') as f:
+        config = json.load(f)
+
+    laptops = False
+
+    paths = {}
+
+    string_name = 'yelp'
+    if laptops:
+        string_name = 'laptop'
+
+
+    paths['train'] = config[string_name]['train']
+    paths['test'] = config[string_name]['test']
+    paths['model'] = config['model_path']
+    paths['reviews'] = config['yelp_text']
+
     num_clusters = 12
     alpha = 0.7
-    unsupervised = Unsupervised(laptops)
+    unsupervised = Unsupervised(paths, laptops)
     cluster_indexes, centroids = unsupervised.k_means_clustering_yelp(num_clusters)
     clustScores = unsupervised.classify_clusters(cluster_indexes, centroids)
     result = unsupervised.classify_test_sentences(alpha, clustScores, centroids)
