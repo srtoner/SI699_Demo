@@ -8,10 +8,11 @@ Demo for SI699
 - [Data](##Data)
     - [Dataset](##Dataset)
 - [Dependencies](##Dependencies)
-- [Setup](##Setup:)
-- [File introduction](##File_introduction)
+- [Setup](##Setup)
+  - [setup_Conda_environment](###setup_Conda_environment)
+  - [Install_packages](###Install packages)
+- [File_introduction](##File_introduction)
 - [Result](##Result)
-
 - [Cite](##Cite)
 
 
@@ -40,8 +41,59 @@ You can find the dataset in the semeval 2014 website [here](http://alt.qcri.org/
 * nltk
 
 
-## Setup:
-### Install packages
+## Setup
+### Setup_Conda_environment (if you installed, skip the step)
+#### 1. Installing Anaconda
+If you already have Anaconda installed, you can skip this step, otherwise, you can download and install the latest version of [Anaconda](https://www.anaconda.com/products/individualInstall) from the official website.
+#### 2. Creating a new python environment for this course
+##### 2.1 Open the shell:
+(Option A) On a Mac, search for the Terminal app:
+![Terminal app](README File/Terminal.png)
+This should open a window that looks something like this:
+![Terminal-1 app](README File/Terminal-1.png)
+
+
+ (Option B): On a Windows machine:
+
+Use Windows key + R to get the "Run" window.
+![windows](README File/windows.png)
+Type in "wt" and click "OK", which should open a terminal:
+![windows-1](README File/windows-1.png)
+(if "wt" doesn't work, try "cmd")
+
+##### 2.2  Verify conda is working (and optionally update it)
+In the terminal, run:
+```sh
+conda --version
+````
+which should print
+
+**`conda 23.1.0`**
+[or a similar version]
+
+If you already had an older version of conda installed, you may want to update it using:
+```sh
+conda update -n base conda
+```
+(then hit 'y' and enter)
+
+##### 2.3 Create a new environment for this demo
+To create a new environment, run:
+```shell
+conda create --name [env_name] -c anaconda python=3.9.15
+```
+This should display something like the following (hit 'y' and enter):
+
+##### 2.4 Activate the environment by running:
+```shell
+conda activate [env_name]
+```
+### Install packages  ([requirements.txt](requirements.txt))
+changes the current working directory to the directory that contains a file named "requirements.txt".
+```shell
+cd [Path]
+```
+then run:
 ```sh
 pip install -r requirements.txt
 ```
@@ -51,11 +103,11 @@ pip install numpy  pandas tqdm matplotlib scikit-learn tqdm plotly nltk gensim==
 ```
 ## Run:
 ```sh
-> python main.py
+python main.py
 ```
 ### then
 ```sh
-> python demo.py
+python demo.py
 ```
 ## File_introduction
 - [dataLoader.py](dataLoader.py)
@@ -120,7 +172,7 @@ them in the same scatter plot with different color.
 
 
 
-# About this project workflow:
+# About this demo workflow:
 
 ## XML parsing and manipulation
 Change dataLoader.py line 42 to your dataset.
@@ -131,12 +183,12 @@ The model "Unsupervised" from model.py has a method "k_means_clustering_yelp()"
 
 
 ### 3D plotting and visualization
-After run main.py, ou can use "plotly" to plot all the centroids.
+After run main.py, you can use **`plotly`** to plot 3D scatter plot.
 
 
 
 ## Result
-![Result](result.gif)
+![Result](README File/result.gif)
 
 ## Cite
 ```
