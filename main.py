@@ -11,7 +11,6 @@ def main():
     result = unsupervised.classify_test_sentences(alpha, clustScores, centroids)
 
     # Save Models for future use
-
     if laptops:
         pickle.dump(unsupervised, open("trained_laptop_model.pkl", 'wb'))
     else:

@@ -16,7 +16,6 @@ path = 'master/yelp-weak-supervision/yelp_restaurant_review.txt'
 class Unsupervised:
     def __init__(self, laptop = False):
 
-
         self.w2v_model = models.KeyedVectors.load_word2vec_format('master/word-embedding/yelp_W2V_300_orig.bin', binary=True)
 
         if not laptop:
@@ -60,7 +59,6 @@ class Unsupervised:
                                        2 : 'Price',
                                        3 : 'Support',
                                        4 : 'anecdotes/miscellaneous'}
-           
            
             self.category_seed_words = {
                 'Performance': {'battery', 'easy', 'fast', 'life', 'power'},

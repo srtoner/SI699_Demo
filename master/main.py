@@ -1,10 +1,5 @@
 from model import Unsupervised
 
-
-
-
-
-
 def main():
     num_clusters = 12
     alpha = 0.7

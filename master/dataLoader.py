@@ -133,10 +133,7 @@ class LoadDataset():
     def getOriginalsentences(self, unprocessed_data, amzn = False):
         unprocessed_sentences = []
         for sentence in unprocessed_data:
-
             text = sentence[0].text
-
-                
             if '$' in text:
                 text = text.replace('$', ' price ')
             text = text.lower()
@@ -146,9 +143,7 @@ class LoadDataset():
     def getOriginalTestsentences(self, unprocessed_data, amzn = False):
         unprocessed_sentences = []
         for sentence in unprocessed_data:
-            
             text = sentence[0].text
-            
             if '$' in text:
                 text = text.replace('$', ' price ')
             text = text.lower()
@@ -158,9 +153,7 @@ class LoadDataset():
     def process_data(self, unprocessed_data, amzn = False):
         unprocessed_sentences = []
         for sentence in unprocessed_data:
-            
             text = sentence[0].text
-            
             if '$' in text:
                 text = text.replace('$', ' price ')
             text = text.lower()
