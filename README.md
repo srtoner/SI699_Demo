@@ -10,7 +10,7 @@ Demo for SI699
 - [Dependencies](##Dependencies)
 - [Setup](##Setup)
   - [setup_Conda_environment](###setup_Conda_environment)
-  - [Install_packages](###Install packages)
+  - [Install_packages](###Install_packages)
 - [File_introduction](##File_introduction)
 - [Result](##Result)
 - [Cite](##Cite)
