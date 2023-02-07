@@ -8,8 +8,8 @@ Demo for SI699
 - [Data](##Data)
     - [Dataset](##Dataset)
 - [Dependencies](##Dependencies)
--  [Setup](##Setup:)
-- [File introduction](##File introduction)
+- [Setup](##Setup:)
+- [File introduction](##File_introduction)
 - [Result](##Result)
 
 - [Cite](##Cite)
@@ -40,7 +40,7 @@ You can find the dataset in the semeval 2014 website [here](http://alt.qcri.org/
 * nltk
 
 
-## Setup: 
+## Setup:
 ### Install packages
 ```sh
 pip install -r requirements.txt
@@ -57,10 +57,10 @@ pip install numpy  pandas tqdm matplotlib scikit-learn tqdm plotly nltk gensim==
 ```sh
 > python demo.py
 ```
-## File introduction
+## File_introduction
 - [dataLoader.py](dataLoader.py)
 
-This file code is used for **`dataLoad`** for loading a dataset of restaurant reviews
+This file is used for **`dataLoad`** for loading a dataset of restaurant reviews
 and related aspect-based sentiment annotations. The class uses the ElementTree library
 to parse the XML data and extract sentences, labels and aspects. The extracted data
 is preprocessed and stored in various class attributes such as **`train_data`**, 
@@ -71,13 +71,13 @@ multiplication are also defined.
  
 - [PreProcessing.py](PreProcessing.py)
 
-This file code is used for **`PreProcess`** which takes two arguments: **`Data`** and **`language`**. 
+This file is used for **`PreProcess`** which takes two arguments: **`Data`** and **`language`**. 
 It provides text pre-processing functionality such as removing punctuation and stopwords. 
 The methods used are **`Remove_Punctuation`** and **`Remove_StopWords`**.
 
 - [xml_parser.py](xml_parser.py)
 
-This code parses the XML file **`ABSA-15_Laptops_Train_Data.xml`** and extracts sentences and opinions. 
+This file parses the XML file **`ABSA-15_Laptops_Train_Data.xml`** and extracts sentences and opinions. 
 It then finds the unique categories of opinions and maps them to the corresponding unique category 
 using the file **`laptop_map.json`**. It then splits the sentences by words and performs a word count
 operation on the words in each category of sentences. The results of the word count operation are
@@ -97,7 +97,7 @@ matrix is saved as a numpy file.
 
 - [main.py](main.py)
 
-This code performs unsupervised learning using the k-means clustering algorithm and creates 
+This file performs unsupervised learning using the k-means clustering algorithm and creates 
 an instance of the **`Unsupervised`** class from the **`master.model`** module and uses
 it to perform k-means clustering on the target dataset. It then classifies the 
 clusters and tests the performance of the classifier on a test dataset.
@@ -106,7 +106,7 @@ and the trained unsupervised model is saved for future use.
 
 - [demo.py](demo.py)
 
-This code is for visualizing the scatter plot of PCA transformed word embeddings.
+This file is for visualizing the scatter plot of PCA transformed word embeddings.
 The scatter plot is generated using Plotly's 3D scatter plot.
 The scatter plot represents word embeddings in 3D space colored based on their category/label
 information. The code first loads the pre-trained Unsupervised model from a pickle file
@@ -136,7 +136,7 @@ After run main.py, ou can use "plotly" to plot all the centroids.
 
 
 ## Result
-![Result](/Users/jeffereyreng/Desktop/SI699_Demo-main/屏幕录制2023-02-07-上午3.40.19.gif)
+![Result](result.gif)
 
 ## Cite
 ```
