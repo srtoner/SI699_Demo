@@ -22,8 +22,10 @@ def consolidate_dict2(corpus):
 
 if __name__ == "__main__":
 
-    # Replace with Absolute Path?
-    train_path = 'dataset/ABSA-15_Laptops_Train_Data.xml'
+    with open('config.txt', 'r') as f:
+        config = json.load(f)
+
+    train_path = config['laptop']['train']
     
     # Two different paths for different nodes: sentences and opinions
     node = 'Review/sentences/sentence'

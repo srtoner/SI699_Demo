@@ -1,20 +1,11 @@
 import numpy as np
-import plotly
-import plotly.graph_objs as go
 from sklearn.decomposition import PCA
 import pickle
 import pandas as pd
 import plotly.express as px
 
-def display_pca_scatterplot_3D(model, user_input=None, words=None, label=None, color_map=None, topn=1, sample=10, sentences = None):
+def pca_scatterplot_3D(model, user_input=None, color_map=None, sentences = None):
 
-    if words == None:
-        if sample > 0:
-            words = np.random.choice(list(model.vocab.keys()), sample)
-        else:
-            words = [ word for word in model.vocab ]
-    
-    
     three_dim = PCA(random_state=0).fit_transform(user_input)[:,:3]
 
     df = pd.DataFrame(three_dim)
@@ -27,10 +18,13 @@ def display_pca_scatterplot_3D(model, user_input=None, words=None, label=None, c
 
 if __name__ == "__main__":
     
-    laptop = True
-
-    with open('trained_laptop_model.pkl', 'rb') as f:
-        model = pickle.load(f)
+    laptop = False
+    if laptop:
+        with open('trained_laptop_model.pkl', 'rb') as f:
+            model = pickle.load(f)
+    else:
+        with open('trained_model.pkl', 'rb') as f:
+            model = pickle.load(f)
 
     laptop_cat_labels = {0 :'Performance',
                          1 : 'Quality',
@@ -62,7 +56,6 @@ if __name__ == "__main__":
     for sent in sentences:
         embeddings.append(model.sentence_embedd_average(sent))
 
-    
     markers = [' '.join(s) for s in sentences]
 
     embed = model.w2v_model
@@ -70,9 +63,6 @@ if __name__ == "__main__":
 
     centroid_labels = ['centroid'] * len(centroids)
 
-    display_pca_scatterplot_3D(embed, embeddings + centroids, 
+    pca_scatterplot_3D(embed, embeddings + centroids, 
                                color_map = cat_labels + data_labels + centroid_labels, 
                                sentences = seed_sentences + markers + centroid_labels)
-
-
-    print("Stop")

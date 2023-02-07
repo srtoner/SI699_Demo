@@ -6,14 +6,13 @@ def main():
     with open('config.txt', 'r') as f:
         config = json.load(f)
 
-    laptops = False
+    laptops = True
 
     paths = {}
 
     string_name = 'yelp'
     if laptops:
         string_name = 'laptop'
-
 
     paths['train'] = config[string_name]['train']
     paths['test'] = config[string_name]['test']
