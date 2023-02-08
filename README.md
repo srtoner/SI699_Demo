@@ -1,33 +1,39 @@
-# still updating more details....
 # SI699_Demo
-Demo for SI699
+#### Download Demo for SI699  [![Downloads][downloads-badge]][releases]
+
+#### create a local copy of a our remote repository
+```shell
+git clone https://github.com/srtoner/SI699_Demo.git
+```
 
 ## Table of Contents
 
-- [Background](##Unsupervised-Aspect-Category-Detection)
-- [Data](##Data)
-    - [Dataset](##Dataset)
+- [Background](#Unsupervised-Aspect-Category-Detection)
+- [Data](#Data)
+    - [Dataset](#Dataset)
 - [Dependencies](##Dependencies)
-- [Setup](##Setup)
-  - [setup_Conda_environment](###setup_Conda_environment)
-  - [Install_packages](###Install_packages)
-- [File_introduction](##File_introduction)
-- [Result](##Result)
-- [Cite](##Cite)
+- [Setup](#Setup)
+  - [setup_Conda_environment](#setup_Conda_environment)
+  - [Install_packages](#Install_packages)
+- [File_introduction](#File_introduction)
+- [Demo workflow](#demo_workflow)
+- [Result](#Result)
+- [Cite](#Cite)
 
 
-## Unsupervised-Aspect-Category-Detection
+## [Unsupervised-Aspect-Category-Detection](#Unsupervised-Aspect-Category-Detection)
 This repository contains the part of code for the paper "An Unsupervised Approach for Aspect Category Detection Using Soft Cosine Similarity Measure".
 
-## Data
+## [Data](#Data)
 The unlabeld yelp reviews sentences can be downloaded at [[Download]](https://drive.google.com/file/d/1aCOK59-hWj9qmFT7jsYb4N791Ty9tvNx/view). Put this file in the 'yelp-weak-supervision' folder.
+### ![word-embedding](README%20File/word-embedding.png)
 The pre-trained word embeddings can be downloaded at [[Download]](https://drive.google.com/file/d/1Uh7TOEqthjbzIUHIOQ2EYH1nLzVhpLrn/view). Put this file in the 'word-embedding' folder.
-
-## Dataset
+### ![yelp-weak-supervision](README%20File/yelp-weak-supervision.png)
+## [Dataset](#Dataset)
 
 You can find the dataset in the semeval 2014 website [here](http://alt.qcri.org/semeval2014/task4/index.php?id=data-and-tools).(If you cannot download the xml file, you can **`select`** the xml file, **`right-click`**, and **`save the link as`**.) Copy the dataset to the directory 'dataset'.
-
-## Dependencies
+### ![dataset](README%20File/dataset.png)
+## [Dependencies](##Dependencies)
 
 * python 3.6.0 or higher   
 * numpy 1.15.4 or higher
@@ -41,29 +47,33 @@ You can find the dataset in the semeval 2014 website [here](http://alt.qcri.org/
 * nltk
 
 
-## Setup
-### Setup_Conda_environment (if you installed, skip the step)
+## [Setup](#Setup)
+ ### [setup_Conda_environment(if you installed, skip the step)](#setup_Conda_environment) 
 #### 1. Installing Anaconda
 If you already have Anaconda installed, you can skip this step. Otherwise, you can download and install the latest version of [Anaconda](https://www.anaconda.com/products/individualInstall) from the official website.
 #### 2. Creating a new python environment for this course
 ##### 2.1 Open the shell:
-(Option A) On a Mac, search for the Terminal app:
+<details>
+<summary>(Option A) On a Mac, search for the Terminal app:</summary>
+
 ![Terminal app](README%20File/Terminal.png)
+
 This should open a window that looks something like this:
+
 ![Terminal-1 app](README%20File/terminal-1.png)
 
+</details>
 
- (Option B): On a Windows machine:
+<details>
+<summary>(Option B): On a Windows machine:</summary>
+
 
 Use Windows key + R to get the "Run" window.
-
 ![windows](README%20File/windows.png)
-
 Type in "wt" and click "OK", which should open a terminal:
-
 ![windows-1](README%20File/windows-1.png)
-
 (if "wt" doesn't work, try "cmd")
+</details>
 
 ##### 2.2  Verify conda is working (and optionally update it)
 In the terminal, run:
@@ -113,7 +123,7 @@ python main.py
 ```sh
 python demo.py
 ```
-## File_introduction
+## [File_introduction](#File_introduction)
 - [dataLoader.py](dataLoader.py)
 
 This file is used for **`dataLoad`** for loading a dataset of restaurant reviews
@@ -176,13 +186,12 @@ them in the same scatter plot with different color.
 
 
 
-# About this demo workflow:
+## [Demo workflow](#demo_workflow)
 
 To start, change the contents of the `config.txt` to the relative filepaths of the data files.
 
-
-## PCA for cluster analysis and similarity measures
-The model "Unsupervised" from model.py has a method "k_means_clustering_yelp()"
+* ### PCA for cluster analysis and similarity measures
+  The model "Unsupervised" from model.py has a method "k_means_clustering_yelp()"
 
 
 ### 3D plotting and visualization
@@ -190,10 +199,10 @@ After run main.py, you can use **`plotly`** to plot a 3D scatter plot.
 
 
 
-## Result
-![Result](README%20File/result.gif)
+## [Result](#Result)
+![Result](README%20File/result.gif) 
 
-## Cite
+## [Cite](#Cite)
 ```
 @article{ghadery2018unsupervised,
   title={An Unsupervised Approach for Aspect Category Detection Using Soft Cosine Similarity Measure},
@@ -202,3 +211,6 @@ After run main.py, you can use **`plotly`** to plot a 3D scatter plot.
   year={2018}
 }
 ```
+
+[downloads-badge]: https://img.shields.io/github/downloads/ajeetdsouza/zoxide/total?logo=github&logoColor=white&style=flat-square
+[releases]: https://github.com/srtoner/SI699_Demo
