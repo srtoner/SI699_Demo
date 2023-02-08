@@ -1,5 +1,10 @@
 # SI699_Demo
-##### Download Demo for SI699  [![Downloads][downloads-badge]][releases]
+#### Download Demo for SI699  [![Downloads][downloads-badge]][releases]
+
+#### create a local copy of a our remote repository
+```shell
+git clone https://github.com/srtoner/SI699_Demo.git
+```
 
 ## Table of Contents
 
