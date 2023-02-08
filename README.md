@@ -200,7 +200,7 @@ After run main.py, you can use **`plotly`** to plot a 3D scatter plot.
 
 
 ## [Result](#Result)
-![Result](README%20File/result.gif) 
+![Result](README%20File/Result.gif) 
 
 ## [Cite](#Cite)
 ```
