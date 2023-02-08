@@ -55,7 +55,7 @@ If you already have Anaconda installed, you can skip this step, otherwise, you c
 
 This should open a window that looks something like this:
 
-![Terminal-1 app](README%20File/Terminal-1.png)
+![Terminal-1 app](README%20File/terminal-1.png)
 
 </details>
 
