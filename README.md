@@ -26,13 +26,13 @@ This repository contains the part of code for the paper "An Unsupervised Approac
 
 ## [Data](#Data)
 The unlabeld yelp reviews sentences can be downloaded at [[Download]](https://drive.google.com/file/d/1aCOK59-hWj9qmFT7jsYb4N791Ty9tvNx/view). Put this file in the 'yelp-weak-supervision' folder.
-### ![word-embedding](README%20File/word-embedding.png)
+### ![word-embedding](README%20File/word-embedding.jpeg)
 The pre-trained word embeddings can be downloaded at [[Download]](https://drive.google.com/file/d/1Uh7TOEqthjbzIUHIOQ2EYH1nLzVhpLrn/view). Put this file in the 'word-embedding' folder.
-### ![yelp-weak-supervision](README%20File/yelp-weak-supervision.png)
+### ![yelp-weak-supervision](README%20File/yelp-weak-supervision.jpeg)
 ## [Dataset](#Dataset)
 
 You can find the dataset in the semeval 2014 website [here](http://alt.qcri.org/semeval2014/task4/index.php?id=data-and-tools).(If you cannot download the xml file, you can **`select`** the xml file, **`right-click`**, and **`save the link as`**.) Copy the dataset to the directory 'dataset'.
-### ![dataset](README%20File/dataset.png)
+### ![dataset](README%20File/dataset.jpeg)
 ## [Dependencies](##Dependencies)
 
 * python 3.6.0 or higher   
