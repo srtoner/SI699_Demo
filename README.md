@@ -25,7 +25,7 @@ The pre-trained word embeddings can be downloaded at [[Download]](https://drive.
 
 ## Dataset
 
-You can find the dataset in the semeval 2014 website [here](http://alt.qcri.org/semeval2014/task4/index.php?id=data-and-tools).(If you cannot download the xml file, you can **`select`** the xml file, **`right-click`**, and **`save the link as`**.) Copy the dataset in the directory 'dataset'.
+You can find the dataset in the semeval 2014 website [here](http://alt.qcri.org/semeval2014/task4/index.php?id=data-and-tools).(If you cannot download the xml file, you can **`select`** the xml file, **`right-click`**, and **`save the link as`**.) Copy the dataset to the directory 'dataset'.
 
 ## Dependencies
 
@@ -44,7 +44,7 @@ You can find the dataset in the semeval 2014 website [here](http://alt.qcri.org/
 ## Setup
 ### Setup_Conda_environment (if you installed, skip the step)
 #### 1. Installing Anaconda
-If you already have Anaconda installed, you can skip this step, otherwise, you can download and install the latest version of [Anaconda](https://www.anaconda.com/products/individualInstall) from the official website.
+If you already have Anaconda installed, you can skip this step. Otherwise, you can download and install the latest version of [Anaconda](https://www.anaconda.com/products/individualInstall) from the official website.
 #### 2. Creating a new python environment for this course
 ##### 2.1 Open the shell:
 (Option A) On a Mac, search for the Terminal app:
@@ -93,7 +93,7 @@ This should display something like the following (hit 'y' and enter):
 conda activate [env_name]
 ```
 ### Install packages  ([requirements.txt](requirements.txt))
-changes the current working directory to the directory that contains a file named "requirements.txt".
+change the current working directory to the directory that contains a file named "requirements.txt".
 ```shell
 cd [Path]
 ```
@@ -178,8 +178,7 @@ them in the same scatter plot with different color.
 
 # About this demo workflow:
 
-## XML parsing and manipulation
-Change dataLoader.py line 42 to your dataset.
+To start, change the contents of the `config.txt` to the relative filepaths of the data files.
 
 
 ## PCA for cluster analysis and similarity measures
@@ -187,7 +186,7 @@ The model "Unsupervised" from model.py has a method "k_means_clustering_yelp()"
 
 
 ### 3D plotting and visualization
-After run main.py, you can use **`plotly`** to plot 3D scatter plot.
+After run main.py, you can use **`plotly`** to plot a 3D scatter plot.
 
 
 
