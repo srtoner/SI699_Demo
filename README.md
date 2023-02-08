@@ -9,9 +9,9 @@
 - [Dependencies](##Dependencies)
 - [Setup](#Setup)
   - [setup_Conda_environment](#setup_Conda_environment)
-  - [Install_packages](#Install packages)
+  - [Install_packages](#Install_packages)
 - [File_introduction](#File_introduction)
-- [Demo workflow](#demo workflow)
+- [Demo workflow](#demo_workflow)
 - [Result](#Result)
 - [Cite](#Cite)
 
@@ -97,7 +97,7 @@ This should display something like the following (hit 'y' and enter):
 ```shell
 conda activate [env_name]
 ```
-### [Install_packages](#Install packages) ([requirements.txt](requirements.txt))
+### [Install_packages](#Install_packages) ([requirements.txt](requirements.txt))
 changes the current working directory to the directory that contains a file named "requirements.txt".
 ```shell
 cd [Path]
@@ -181,7 +181,7 @@ them in the same scatter plot with different color.
 
 
 
-## [Demo workflow](#demo workflow)
+## [Demo workflow](#demo_workflow)
 
 * ###  XML parsing and manipulation
 
